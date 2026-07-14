@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk -F= '/^[A-Za-z_]/ {v=substr\\($0, index\\($0,\"=\"\\)+1\\); print $1 \" -> \" \\(length\\(v\\)>0 ? \"SET \\(len \" length\\(v\\) \"\\)\" : \"EMPTY\"\\)}' .env.local)",
+      "PowerShell(node \"C:\\\\Users\\\\ruf12\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-ruf12-OneDrive-------book-jjang-05-bookjjang-db\\\\003b4efb-163b-4065-9792-4c91989b42d3\\\\scratchpad\\\\probe.mjs\")",
+      "Bash(unzip -l \"/c/Users/ruf12/OneDrive/바탕 화면/book_jjang/05-bookjjang-db.zip\")"
+    ]
+  }
+}

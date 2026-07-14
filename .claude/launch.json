@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bookjjang",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "04-bookjjang-design-md", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}
