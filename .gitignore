@@ -12,7 +12,7 @@ dist/
 !.env*.example
 
 # 로컬 도구 설정 (하위 폴더에 있는 것까지 모두)
-**/.claude/settings.local.json
+**/.claude/
 **/.vercel/
 
 # OS / 에디터
