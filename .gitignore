@@ -11,9 +11,9 @@ dist/
 # 예시 파일은 비밀값이 없으므로 커밋한다
 !.env*.example
 
-# 로컬 도구 설정
-.claude/settings.local.json
-.vercel/
+# 로컬 도구 설정 (하위 폴더에 있는 것까지 모두)
+**/.claude/settings.local.json
+**/.vercel/
 
 # OS / 에디터
 Thumbs.db

@@ -5,13 +5,14 @@
 **과제**: 나만의 메인 서비스에서 활용될 프로토타입 DB 설계하기
 **작성자**: lhank0103
 
-설계서만 쓰고 끝내지 않고, **실제로 Supabase에 DB를 구축하고 서비스와 연결해 동작까지 확인**했습니다.
+설계서만 쓰고 끝내지 않고, **실제로 Supabase에 DB를 구축하고 서비스와 연결해 배포까지** 했습니다.
 
 | | |
 |---|---|
+| 🌐 **배포된 서비스** | **https://book-jjang.vercel.app** |
 | 📄 **DB 설계서 (과제 산출물)** | [`05-bookjjang-db/01-db-design.md`](05-bookjjang-db/01-db-design.md) |
 | 🗄️ **실제 실행한 스키마** | [`web/supabase/schema.sql`](web/supabase/schema.sql) |
-| 💻 **웹 서비스** | [`web/`](web/) — Next.js 16 + Supabase |
+| 💻 **웹 서비스 코드** | [`web/`](web/) — Next.js 16 + Supabase |
 
 ---
 
