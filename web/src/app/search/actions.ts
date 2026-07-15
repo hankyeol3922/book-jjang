@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { getDemoSession } from '@/lib/supabase/demo'
+import { requireUser } from '@/lib/supabase/session'
 import type { AladinBook } from '@/lib/aladin'
 
 export interface AddResult {
@@ -21,7 +21,7 @@ export async function addToLibrary(book: AladinBook): Promise<AddResult> {
     return { ok: false, error: 'ISBN이 없는 도서는 서재에 담을 수 없어요.' }
   }
 
-  const { supabase, userId } = await getDemoSession()
+  const { supabase, userId } = await requireUser()
 
   // 1) 도서 메타 캐시 — 있으면 재사용, 없으면 삽입
   //    (books 에는 UPDATE 정책이 없으므로 upsert 대신 조회 후 삽입)

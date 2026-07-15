@@ -1,11 +1,11 @@
 import 'server-only'
-import { getDemoSession } from '@/lib/supabase/demo'
+import { requireUser } from '@/lib/supabase/session'
 import type { LibraryBookWithBook, Profile } from '@/types/db'
 
 const LIBRARY_SELECT = '*, book:books(*)'
 
 export async function getProfile(): Promise<Profile | null> {
-  const { supabase, userId } = await getDemoSession()
+  const { supabase, userId } = await requireUser()
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -17,7 +17,7 @@ export async function getProfile(): Promise<Profile | null> {
 }
 
 export async function getLibrary(): Promise<LibraryBookWithBook[]> {
-  const { supabase, userId } = await getDemoSession()
+  const { supabase, userId } = await requireUser()
   const { data, error } = await supabase
     .from('library_books')
     .select(LIBRARY_SELECT)
@@ -34,7 +34,7 @@ export async function getLibraryBook(id: string): Promise<LibraryBookWithBook | 
   // uuid가 아닌 id를 그대로 넘기면 Postgres가 타입 에러를 던지므로 미리 걸러낸다
   if (!UUID_RE.test(id)) return null
 
-  const { supabase, userId } = await getDemoSession()
+  const { supabase, userId } = await requireUser()
   const { data, error } = await supabase
     .from('library_books')
     .select(LIBRARY_SELECT)

@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { getDemoSession } from '@/lib/supabase/demo'
+import { requireUser } from '@/lib/supabase/session'
 import type { ReadingStatus } from '@/types/db'
 
 export interface SaveRecordInput {
@@ -25,7 +25,7 @@ export interface ActionResult {
 const nullify = (v: string) => (v.trim() === '' ? null : v.trim())
 
 export async function saveRecord(input: SaveRecordInput): Promise<ActionResult> {
-  const { supabase, userId } = await getDemoSession()
+  const { supabase, userId } = await requireUser()
 
   const { error } = await supabase
     .from('library_books')

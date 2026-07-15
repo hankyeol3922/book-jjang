@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { signOut } from '@/app/auth/actions'
 
 const links = [
   { href: '/library', label: '내 서재' },
@@ -41,6 +42,14 @@ export function Nav() {
           <span className="ml-2 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-sm">
             🐻
           </span>
+          <form action={signOut}>
+            <button
+              type="submit"
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
+            >
+              로그아웃
+            </button>
+          </form>
         </nav>
       </div>
     </header>
