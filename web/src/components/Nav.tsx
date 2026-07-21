@@ -7,6 +7,7 @@ import { signOut } from '@/app/auth/actions'
 const links = [
   { href: '/library', label: '내 서재' },
   { href: '/search', label: '책 검색' },
+  { href: '/mypage', label: '마이페이지' },
 ]
 
 export function Nav() {
@@ -39,9 +40,13 @@ export function Nav() {
               </Link>
             )
           })}
-          <span className="ml-2 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-sm">
+          <Link
+            href="/mypage"
+            aria-label="마이페이지"
+            className="ml-2 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-sm transition-opacity hover:opacity-80"
+          >
             🐻
-          </span>
+          </Link>
           <form action={signOut}>
             <button
               type="submit"

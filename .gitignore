@@ -14,6 +14,8 @@ dist/
 # 로컬 도구 설정 (하위 폴더에 있는 것까지 모두)
 **/.claude/
 **/.vercel/
+# MCP 서버 설정 — 로컬 도구 설정이라 커밋하지 않는다
+.mcp.json
 
 # OS / 에디터
 Thumbs.db
@@ -26,3 +28,39 @@ Thumbs.db
 *.log
 npm-debug.log*
 yarn-error.log*
+
+# 인증서 / 개인키 (.env 외의 비밀값도 차단)
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_rsa.*
+*_rsa
+
+# 서비스 계정 / 클라우드 자격증명 파일
+serviceAccount*.json
+service-account*.json
+service_account*.json
+gha-creds-*.json
+
+# Supabase CLI 로컬 산출물 (web/supabase/schema.sql 같은 소스는 그대로 유지)
+.supabase/
+**/supabase/.branches/
+**/supabase/.temp/
+
+# 빌드 캐시 / 자동 생성물 (하위 앱에도 각자 .gitignore 가 있지만 루트 안전망)
+*.tsbuildinfo
+next-env.d.ts
+.turbo/
+.cache/
+coverage/
+
+# 압축 아카이브 — 소스 저장소에는 커밋하지 않는다
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z

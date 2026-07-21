@@ -82,14 +82,39 @@ create policy "books_insert_auth" on public.books
   for insert to authenticated with check (true);
 
 -- 5) 트리거 -----------------------------------------------------------------
--- 신규 가입 시 profiles 자동 생성 (구글 이름을 기본 별명으로)
+-- 신규 가입(구글 OAuth 포함) 시 profiles 자동 생성 (구글 display name 을 기본 닉네임으로)
+-- nickname 은 2~20자 CHECK 가 있으므로, 이름을 clamp 해 로그인이 막히지 않게 한다.
 create or replace function public.handle_new_user()
-returns trigger language plpgsql security definer as $$
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  raw_name text;
+  nick     text;
 begin
+  -- 구글 display name → full_name → 이메일 앞부분 → 기본값('독서가')
+  raw_name := coalesce(
+    nullif(trim(new.raw_user_meta_data->>'name'), ''),
+    nullif(trim(new.raw_user_meta_data->>'full_name'), ''),
+    nullif(split_part(coalesce(new.email, ''), '@', 1), ''),
+    '독서가'
+  );
+
+  -- 2~20자 CHECK 를 절대 위반하지 않도록 clamp
+  nick := left(raw_name, 20);
+  if char_length(nick) < 2 then
+    nick := '독서가';
+  end if;
+
   insert into public.profiles (id, nickname)
-  values (new.id, coalesce(new.raw_user_meta_data->>'name', '독서가'));
+  values (new.id, nick)
+  on conflict (id) do nothing;
+
   return new;
-end; $$;
+end;
+$$;
 
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
